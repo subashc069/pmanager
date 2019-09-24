@@ -19,11 +19,11 @@ class CreateTasksTable extends Migration
             $table->longText('description');
             $table->integer('days')->unsigned()->nullable();
             $table->integer('hours')->unsigned()->nullable();
-            $table->integer('project_id')->unsigned();
+            $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
-            $table->integer('company_id')->unsigned()->nullable();
-            $table->foreign('comany_id')->references('id')->on('companies');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

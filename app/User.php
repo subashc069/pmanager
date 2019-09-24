@@ -16,7 +16,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'city',
+        'role_id',
     ];
 
     /**
@@ -37,8 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+
     public function projects()
     {
-        return $this->hasMany(Project::class, 'owner_id'); //gets the auth user id and lists all its projects
+        return $this->hasMany(Project::class); //gets the auth user id and lists all its projects
     }
 }

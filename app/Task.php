@@ -9,9 +9,13 @@ class Task extends Model
 {
     //
     protected $fillable = [
-        'completed',
+        'name',
+        'description',
+        'days',
+        'hours',
         'project_id',
-        'description'
+        'company_id',
+        'user_id',
     ];
 
     public  function complete($completed = true){
