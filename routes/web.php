@@ -24,28 +24,12 @@ Route::get('/', function () {
     DELETE /projects/1 (destroy)
 */
 
-/*
-Route::get('/projects','ProjectsController@index');
-Route::get('/projects/create','ProjectsController@create');
-Route::get('/projects/{project}','ProjectsController@show');
-Route::post('/projects', 'ProjectsController@store');
-Route::get('/projects/{project}/edit','ProjectsController@edit');
-Route::patch('/projects/{project}', 'ProjectsController@update');
-Route::delete('/projects/{project}','ProjectsController@destroy');
-*/
-
-Route::resource('/projects','ProjectsController');
-
-Route::post('/projects/{project}/tasks/','ProjectTasksController@store');
-
-
-Route::post('/completed-tasks/{task}','CompletedTasksController@store');
-Route::delete('/completed-tasks/{task}','CompletedTasksController@destroy');
-
-Auth::routes();
+Auth::Routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('companies','CompaniesController');
+Route::resource('projects','ProjectsController');
+Route::resource('roles','RolesController');
+Route::resource('task','TasksController');
+Route::resource('users','UsersController');

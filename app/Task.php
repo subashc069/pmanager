@@ -33,6 +33,11 @@ class Task extends Model
         $this->belongsTo(User::class);
     }
 
+    public function users()
+    {
+        $this->belongsToMany(User::class);
+    }
+
     public  function complete($completed = true){
         $this->update(compact('completed'));
     }

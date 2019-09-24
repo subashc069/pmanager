@@ -46,10 +46,10 @@ class User extends Authenticatable
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsToMany(Task::class);
     }
 
-    public function comments()
+    public function comment()
     {
         return $this->hasMany(Comment::class);
     }
@@ -64,8 +64,19 @@ class User extends Authenticatable
         return $this->hasMany(Company::class);
     }
 
+     public function project()
+     {
+         return $this->belongsToMany(Project::class);
+    }
+
+    // public function tasks()
+    // {
+    //     $this->belongsToMany(User::class);
+    // }
+
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        $this->belongsToMany(Project::class);
     }
+
 }
