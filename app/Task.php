@@ -18,6 +18,21 @@ class Task extends Model
         'user_id',
     ];
 
+    public function project()
+    {
+        $this->belongsTo(Project::class);
+    }
+
+    public function companie()
+    {
+        $this->belongsTo(Company::class);
+    }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
+
     public  function complete($completed = true){
         $this->update(compact('completed'));
     }
@@ -26,8 +41,4 @@ class Task extends Model
         $this->complete(false);
     }
 
-    public function project(){
-
-        return $this->belongsTo(Project::class);
-    }
 }

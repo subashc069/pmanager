@@ -44,10 +44,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
 
     public function projects()
     {
-        return $this->hasMany(Project::class); //gets the auth user id and lists all its projects
+        return $this->hasMany(Project::class);
     }
 }
