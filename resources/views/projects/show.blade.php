@@ -40,6 +40,14 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
+
+                      @foreach ($project->comments as $comment)
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h2>{{ $comment->body }}</h2>
+                            <p>{{ $comment->url }}</p>
+                            <a class="btn btn-primary float-right" href="/projects/{{ $project->id }}show">View Project</a>
+                          </div>        
+                      @endforeach
                   </div>
   </div>
     

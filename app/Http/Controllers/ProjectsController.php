@@ -72,7 +72,7 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
         //$company = Project::where('id', $company->id);
-        return view('projects.show',compact('project')); 
+        return view('projects.show', compact('project')); 
     }
 
     /**
