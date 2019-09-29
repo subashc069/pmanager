@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -49,6 +50,15 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('companies.index') }}">My Accouts</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('projects.index') }}">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,7 +83,13 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @include('partials.errors')
+                @include('partials.success')
+                <div class="row">
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>

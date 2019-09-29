@@ -6,5 +6,4 @@
             @endforeach
         </ul>    
     @endif
-    
 </div>

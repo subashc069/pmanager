@@ -28,10 +28,10 @@ class Task extends Model
         $this->belongsTo(Company::class);
     }
 
-    public function user()
-    {
-        $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     $this->belongsTo(User::class);
+    // }
 
     public function users()
     {

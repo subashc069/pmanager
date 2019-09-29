@@ -4,17 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateCompany;
+use App\Http\Requests\EditCompanies;
 
 class CompaniesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        if (Auth::check()) {
+            $companies = Company::where('user_id', Auth::user()->id)->get();
+            //$companies = auth()->user()->$companies;
+            return view('companies.index', compact('companies'));  
+        }
+        return view('login');
     }
 
     /**
@@ -24,7 +36,7 @@ class CompaniesController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -33,9 +45,19 @@ class CompaniesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateCompany $request)
+    {   $validated = $request->validated();
+        $validated['user_id'] = auth()->id();
+        //dd($validated['user_id']); 
+       if (Auth::check()) {
+           $company = Company::create($validated);
+            if ($company) {
+                return redirect()->route('companies.index')->with('success','company created successfully');
+            }
+       }
+       return back()->withInput(); 
+
+       //return back()->withInput()->with('errors','cannot create company for some reason'); 
     }
 
     /**
@@ -46,7 +68,8 @@ class CompaniesController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        //$company = Company::where('id', $company->id);
+        return view('companies.show',compact('company')); 
     }
 
     /**
@@ -57,7 +80,7 @@ class CompaniesController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -67,9 +90,15 @@ class CompaniesController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(EditCompanies $request, Company $company)
     {
-        //
+        $validated = $request->validated();
+        //dd($validated);
+        $company->update($validated);
+        if($company){
+            return redirect()->route('companies.show',compact('company'))->with('success','Company Edited successfully');
+        }
+        return back()->withInput(); 
     }
 
     /**
@@ -80,6 +109,10 @@ class CompaniesController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        if($company->delete()){
+            return redirect()->route('companies.index')->with('success','company deleted successfully');
+        }
+
+        return back()->withInput()->with('error','Company could not be deleted');
     }
 }

@@ -4,19 +4,18 @@
 
  <!-- Main jumbotron for a primary marketing message or call to action -->
  <div class="col-md-9 col-lg-9 col-sm-9 pull-left">
-    <h1>Create new Project</h1>
+    <h1>Create new Company</h1>
     <div class="row col-md-12 col-lg-12 col-sm-12" style="background: white; margin:10px">
-      
-      <form action="{{ route('projects.store')}}" method="POST">
+      <form action="{{ route('companies.store') }}" method="POST">
         @csrf
         <div class="form-group">
           <label for="companyName">Name</label>
           <input type="text" class="form-control"  name="name"  placeholder="Enter the name of the company" required>
-          <small id="nameHelp" class="form-text text-muted">Enter the  new project</small>
+          <small id="nameHelp" class="form-text text-muted">Enter the  new company</small>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea type="text" class="form-control" name="description" required placeholder="Write about your project"></textarea>
+          <textarea type="text" class="form-control" name="description" required placeholder="Write about your company"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
