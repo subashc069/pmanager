@@ -24,7 +24,7 @@
                     <hr>
                     <form action="{{ route('comments.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="commentable_type" value="Project">
+                        <input type="hidden" name="commentable_type" value="App\Project">
                         <input type="hidden" name="commentable_id" value="{{ $project->id }}">
 
                         <div class="form-group">
@@ -40,18 +40,10 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
+                      @include('partials.comments')
 
-                      @foreach ($project->comments as $comment)
-                          <div class="col-lg-4 col-md-4 col-sm-4">
-                            <h2>{{ $comment->body }}</h2>
-                            <p>{{ $comment->url }}</p>
-                            <a class="btn btn-primary float-right" href="/projects/{{ $project->id }}show">View Project</a>
-                          </div>        
-                      @endforeach
                   </div>
   </div>
-    
-    
     <aside class="col-sm-2 col-md-3 col-lg-3 pull-right">
             <div class="p-4">
                     <h4 class="font-italic">Options</h4>
