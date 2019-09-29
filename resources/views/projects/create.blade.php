@@ -7,13 +7,28 @@
     <h1>Create new Project</h1>
     <div class="row col-md-12 col-lg-12 col-sm-12" style="background: white; margin:10px">
       
-      <form action="{{ route('projects.store')}}" method="POST">
+      <form action="{{ route('projects.store') }}" method="POST">
         @csrf
         <div class="form-group">
-          <label for="companyName">Name</label>
-          <input type="text" class="form-control"  name="name"  placeholder="Enter the name of the company" required>
+          <label for="companyName">Name *</label>
+          <input type="text" class="form-control"  name="name"  placeholder="Enter the name of the project" required>
           <small id="nameHelp" class="form-text text-muted">Enter the  new project</small>
         </div>
+
+        @if ($companies == null)
+            <input type="hidden" name="company_id" value= "{{ $company_id }}" >
+        @endif
+        @if ($companies != null)
+        <div class="form-group">
+          <label for="companySelect">Select Company</label>
+            <select class="custom-select" name="company_id">
+              @foreach ($companies as $company)
+                  <option value="{{ $company->id}}"> {{$company->name}} </option>    
+              @endforeach
+            </select>    
+        </div>
+        @endif
+
         <div class="form-group">
           <label for="description">Description</label>
           <textarea type="text" class="form-control" name="description" required placeholder="Write about your project"></textarea>
@@ -26,8 +41,8 @@
         <div class="p-4">
                 <h4 class="font-italic">Options</h4>
                 <ol class="list-unstyled">
-                  <li><a href="/companies">List companies</a></li>
-              </div>
+                  <li><a href="/projects">My Projects</a></li>
+        </div>
   
         {{-- <div class="p-4">
           <h4 class="font-italic">Members</h4>

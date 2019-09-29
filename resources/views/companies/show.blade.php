@@ -10,7 +10,7 @@
                 </div>
                 </div>
                 <div class="container">
-                    <a class="btn btn-primary float-right" href="projects/create">Add project</a>
+                    <a class="btn btn-primary float-right" href="/projects/create/{{ $company->id }}">Add project</a>
                 <!-- Example row of columns -->
                 <div class="row">
                    @foreach ($company->projects as $project)
@@ -31,9 +31,9 @@
                     <h4 class="font-italic">Options</h4>
                     <ol class="list-unstyled">
                       <li><a href="/companies/{{ $company->id }}/edit">Edit</a></li>
-                      <li><a href="/companies/create">Create Companies</a></li>
+                      <li><a href="/companies/create ">Create Companies</a></li>
                       <li><a href="/companies">View List of Companies</a></li>
-                      <li><a href="/projects/create">Add Projects</a></li>
+                      <li><a href="/projects/create/{{ $company->id }}">Add Projects</a></li>
                       <hr>
                       <li>
                           <a href="#" onclick="

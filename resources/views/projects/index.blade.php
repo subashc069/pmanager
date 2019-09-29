@@ -4,11 +4,11 @@
     
         <div class="col-md-6 col-lg-6">
             <div class="card ">
-                <div class="card-header text-white bg-primary">Companies <a class="float-right btn btn-primary" href="/companies/create"> Create a new Company</a></div>
+                <div class="card-header text-white bg-primary">Projects<a class="float-right btn btn-primary" href="/projects/create"> Add a new Project </a></div>
                 <div class="card-body">
                     <ul class="list-group">
-                        @foreach ($companies as $company)
-                        <li class="list-group-item"><a href="/companies/{{ $company->id }}">{{ $company->name }}</a></li>
+                        @foreach ($projects as $project)
+                        <li class="list-group-item"><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></li>
                         @endforeach
                         </ul>
                 </div>
